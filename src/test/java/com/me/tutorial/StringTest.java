@@ -41,4 +41,40 @@ public class StringTest {
         System.out.println(repeatTwoNumber.matcher("1212121212345").find());
         System.out.println(repeatThreeNumber.matcher("1231231234567").find());
     }
+
+    @Test
+    public void replaceVsConcat() throws Exception {
+        long now = System.currentTimeMillis();
+        append();
+        System.out.println("append elapsed " + (System.currentTimeMillis() - now) + " ms");
+
+        now = System.currentTimeMillis();
+        concat();
+        System.out.println("concat elapsed " + (System.currentTimeMillis() - now) + " ms");
+    }
+
+    @Test
+    public void intern() throws Exception {
+        System.out.println("intern : " + (("a" + "b" + "c").intern() == "abc"));
+        System.out.println("not intern : " + (("a" + "b" + "c") == "abc"));
+    }
+
+    @Test
+    public void convertStringToInteger() throws Exception {
+        Integer number = Integer.parseInt("0714");
+        System.out.println(number);
+    }
+
+    private void append() {
+        for (int i = 0; i < 1000000; i++) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("A").append("B").append("C").append("D").append("E").append("F").append("G");
+        }
+    }
+
+    private void concat() {
+        for (int j = 0; j < 1000000; j++) {
+            String ss = "A" + "B" + "C" + "D" + "E" + "F" + "G";
+        }
+    }
 }
